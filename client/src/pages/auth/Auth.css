@@ -1,0 +1,50 @@
+
+
+.auth{
+    height: 100%;
+    width: 98%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+
+}
+
+.a-left{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+
+.a-left h1{
+   
+    /* gradient  */
+  
+
+}
+
+.a-right{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.form{
+    background-color: black;
+    border-radius: 20px;
+}
+
+.form input::placeholder{
+    /* color: black; */
+}
+
+.form input{
+    color: black;
+}

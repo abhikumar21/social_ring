@@ -1,0 +1,19 @@
+.grid1{
+    display: grid;
+    grid-template-columns: 1fr 0fr 1fr;
+
+}
+
+.f1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.f1 p{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
+}

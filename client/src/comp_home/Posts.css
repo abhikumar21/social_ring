@@ -1,0 +1,28 @@
+.upload{
+    height: 20vh;
+    background-color: rgb(148, 185, 218);
+}
+
+/* .upload img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+} */
+
+.uploadbtn{
+    display: flex;
+    justify-content: space-around;
+}
+
+.uploadbtn .btn{
+   background-color: aqua;
+   color: black;
+}
+
+.previewimage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
