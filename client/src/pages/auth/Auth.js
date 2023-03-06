@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import './Auth.css'
-// import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import { logIn, signUp } from '../../action/AuthAction';
 
 
 
 
 const Auth = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   const [isSignUp, setIsSignUp] = useState(false)
   const [confirmPass, setConfirmPass] = useState(false)
@@ -17,21 +18,23 @@ const Auth = () => {
     setData({...data, [e.target.name]: e.target.value})
  };
 
-//  const handeleSubmit =(e) => {
+ const handeleSubmit =(e) => {
  
-//    e.preventDefault();
-//    if(isSignUp) {
+   e.preventDefault();
 
-//     data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(true);
-//    }
-//    else{
-//     dispatch(logIn(data))  
-//    }
-//  };
+  //  if(isSignUp) {
+  //   data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(true);
+  //  }
+  //  else{
+  //   dispatch(logIn(data))  
+  //  }
+ };
 
-const handeleSubmit = (e) => {
-  e.preventDefault()
-}
+ 
+
+// const handeleSubmit = (e) => {
+//   e.preventDefault()
+// }
 
  const resetForm = () => {
   setData(
