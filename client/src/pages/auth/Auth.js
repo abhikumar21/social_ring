@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import './Auth.css'
-// import {useDispatch} from 'react-redux'
-
-
+import {useNavigate} from 'react-router-dom'
 
 
 const Auth = () => {
 
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const [isSignUp, setIsSignUp] = useState(false)
   const [confirmPass, setConfirmPass] = useState(false)
@@ -17,20 +15,57 @@ const Auth = () => {
     setData({...data, [e.target.name]: e.target.value})
  };
 
-//  const handeleSubmit =(e) => {
- 
-//    e.preventDefault();
-//    if(isSignUp) {
 
-//     data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(true);
-//    }
-//    else{
-//     dispatch(logIn(data))  
-//    }
-//  };
 
-const handeleSubmit = (e) => {
-  e.preventDefault()
+const handeleSubmitRegister = async(e) => {
+  e.preventDefault();
+
+  const {firstname, lastname, username, password, cpassword} = data;  //name = user.name
+  
+  const res = await fetch("/auth/register", {
+    method: "POST",
+    headers:{
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      firstname, lastname, username, password, cpassword
+    })
+  })
+
+  const info = await res.json();
+  if(res.status===500 || !info) {
+    window.alert("Registration Failed");
+    console.log("Invalid registration")
+  }
+  else{
+    window.alert("Registration Successfull");
+    console.log("Successful Registration");
+    navigate('/');
+  }
+}
+
+const handeleSubmitLogin = async(e) => {
+  e.preventDefault();
+  const {username, password} = data;
+  const res = await fetch("/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json"
+    },
+    body: JSON.stringify({
+      username, password
+    })
+  })
+
+  const info = await res.json();
+  if(res.status==200 && info) {
+    window.alert("LOGIN SUCCESSFUL")
+    // console.log(info);
+    navigate('/');
+  }
+  else{
+    window.alert("INVALID CREDENTIALS")
+  }
 }
 
  const resetForm = () => {
@@ -106,7 +141,7 @@ const handeleSubmit = (e) => {
    <span className='flex justify-between my-4'>
      <a href="#" className='' onClick={()=>{setIsSignUp(true); resetForm()}}>Already have an account. Login </a>
      <button className='rbutton' 
-     onClick={handeleSubmit}
+     onClick={handeleSubmitRegister}
      >Sign Up</button>
    </span>
   </form>
@@ -141,7 +176,7 @@ const handeleSubmit = (e) => {
 
    <span className='flex justify-between my-4'>
    <a href="#" className='mr-6' onClick={()=>setIsSignUp(false)}>Don't have an account? Sign Up </a>
-     <button className='rbutton'>Login</button>
+     <button className='rbutton' onClick={handeleSubmitLogin}>Login</button>
    </span>
   </form>
  
@@ -159,4 +194,4 @@ const handeleSubmit = (e) => {
 
 
 
-export default Auth
+export default Auth;
