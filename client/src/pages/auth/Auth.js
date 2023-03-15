@@ -10,8 +10,8 @@ const Auth = () => {
 
   const dispatch = useDispatch();
   
-  const [isSignUp, setIsSignUp] = useState(false)
-  const [confirmPass, setConfirmPass] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(true)
+  const [confirmPass, setConfirmPass] = useState(true)
   const [data, setData] = useState({firstname:"", lastname:"", username:"", password:"", password:"", cpassword:""})
 
  const handleChange = (e) => {
@@ -22,19 +22,18 @@ const Auth = () => {
  
    e.preventDefault();
 
-  //  if(isSignUp) {
-  //   data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(true);
-  //  }
-  //  else{
-  //   dispatch(logIn(data))  
-  //  }
+   if(isSignUp) {
+    data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(false);
+    console.log("signup")
+   }
+   else{
+    dispatch(logIn(data)) 
+    console.log("login") 
+   }
  };
 
  
 
-// const handeleSubmit = (e) => {
-//   e.preventDefault()
-// }
 
  const resetForm = () => {
   setData(
@@ -52,7 +51,7 @@ const Auth = () => {
     </div>
 
 
-   { !isSignUp ?   
+   { isSignUp ?   
    //SignUp
    <div className='a-right'>
   <form type="submit" method="POST" 
@@ -104,7 +103,7 @@ const Auth = () => {
      ></input>
    </span>
 
-   {confirmPass ? <div className='confirm text-red-700'>*Confirm Password is not same</div> : <div></div>}
+   {!confirmPass ? <div className='confirm text-red-700'>*Confirm Password is not same</div> : <div></div>}
 
    <span className='flex justify-between my-4'>
      <a href="#" className='' onClick={()=>{setIsSignUp(true); resetForm()}}>Already have an account. Login </a>
