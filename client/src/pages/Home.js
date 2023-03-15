@@ -1,9 +1,10 @@
 import React from 'react'
 import './Home.css'
-import Posts from '../comp_home/Posts'
-import Leftbar from '../comp_home/Leftbar.js'
-import Rightbar from '../comp_home/Rightbar.js'
+
 import Auth from './auth/Auth'
+import Myhome from './Myhome'
+import {Routes, Route} from 'react-router-dom'
+
 
 //2:11
 
@@ -14,11 +15,10 @@ const Home = () => {
       <div className='yellow'></div>
       <div className='orange'></div>
      <div className='sections h-full w-full'>
-       {/* <Leftbar/>
-       <Posts/>
-       <Rightbar/> */}
-
-       <Auth/>
+     <Routes>
+       <Route path='/' element={<Myhome/>}/>
+       <Route path='/register' element={<Auth/>}/>
+     </Routes>
      </div>
     </div>
   )

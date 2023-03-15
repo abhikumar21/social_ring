@@ -28,3 +28,4 @@ mongoose.connect(process.env.CONN_STRING,
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/post', PostRoute)
+
