@@ -1,14 +1,33 @@
 import UserModel from "../models/userModel.js";
+import jwt from 'jsonwebtoken'
+
 
 
 //register user
 export const registerUser = async(req, res) => {
-    const {username, password, firstname, lastname} = req.body;
-    const newUser = new UserModel({username, password, firstname, lastname})
+    // const {username, password, firstname, lastname} = req.body;
+    const newUser = new UserModel(req.body)
+    // req.body.password = password;
+
+    const {username} = req.body
 
     try {
-        await newUser.save()
-        res.status(200).json(newUser)
+        const oldUser = await UserModel.findOne({username})
+        if(oldUser) {
+            return res.status(400).json({message: "username already registered."})
+        }
+ 
+        const user = await newUser.save()
+
+        const token = jwt.sign({
+            username: user.username, id: user._id
+        },
+        process.env.JWT_KEY, {
+            expiresIn: '1h'
+        }
+        )
+
+        res.status(200).json({user, token})
 
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -25,10 +44,18 @@ export const loginUser = async(req, res) => {
     const user= await UserModel.findOne({username: username})
 
     if(user) {
-    //    const validity= password.localeCompare(user.password)
-    const validity = password===user.password;
+       //    const validity= password.localeCompare(user.password)
+       const validity = password===user.password;
 
-       validity ? res.status(200).json(user) : res.status(400).json("invalid credentials")
+       //    validity ? res.status(200).json(user) : res.status(400).json("invalid credentials")
+         if(!validity) {
+             res.status(400).json("Wrong Password")
+         }
+         else{
+            const token = jwt.sign({username: user.username, id: user._id},
+            process.env.JWT_KEY, {expiresIn: '1h'})
+            res.status(200).json({user, token})
+         }
     }
     else{
       res.status(404).json("User does not exist")

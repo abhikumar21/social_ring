@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Auth.css'
 import {useDispatch} from 'react-redux'
 import { logIn, signUp } from '../../action/AuthAction';
-
+//loading functionality ( 47:00 )
 
 
 
@@ -106,7 +106,7 @@ const Auth = () => {
    {!confirmPass ? <div className='confirm text-red-700'>*Confirm Password is not same</div> : <div></div>}
 
    <span className='flex justify-between my-4'>
-     <a href="#" className='' onClick={()=>{setIsSignUp(true); resetForm()}}>Already have an account. Login </a>
+     <a href="#" className='' onClick={()=>{setIsSignUp(false); resetForm()}}>Already have an account. Login </a>
      <button className='rbutton' 
      onClick={handeleSubmit}
      >Sign Up</button>
@@ -142,8 +142,8 @@ const Auth = () => {
    </span>
 
    <span className='flex justify-between my-4'>
-   <a href="#" className='mr-6' onClick={()=>setIsSignUp(false)}>Don't have an account? Sign Up </a>
-     <button className='rbutton'>Login</button>
+   <a href="#" className='mr-6' onClick={()=>setIsSignUp(true)}>Don't have an account? Sign Up </a>
+     <button className='rbutton' onClick={handeleSubmit}>Login</button>
    </span>
   </form>
  
