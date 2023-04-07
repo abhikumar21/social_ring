@@ -1,24 +1,32 @@
 import React from 'react'
 import './Home.css'
-import Posts from '../comp_home/Posts'
-import Leftbar from '../comp_home/Leftbar.js'
-import Rightbar from '../comp_home/Rightbar.js'
 import Auth from './auth/Auth'
+import Pghm from './Pghome/Pghm'
+import {Routes, Route, Navigate} from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-//2:11
+//1:08
 
 
 const Home = () => {
+
+  const user = useSelector((state)=> state.authReducer.authData)
+
+
   return (
     <div className='home h-screen text-white px-8 pt-8 pb-4'>
       <div className='yellow'></div>
       <div className='orange'></div>
      <div className='sections h-full w-full'>
-       {/* <Leftbar/>
-       <Posts/>
-       <Rightbar/> */}
+      
+      <Routes>
+        <Route path='/' element={user? <Navigate to ="home"/> : <Navigate to = "auth"/>} />
+        <Route path='/home' element={user? <Pghm/> : <Navigate to= '../auth'/>} />
+        <Route path='/auth' element={user? <Navigate to ='../home'/> : <Auth/>} />
+      </Routes>
+       
 
-       <Auth/>
+      
      </div>
     </div>
   )

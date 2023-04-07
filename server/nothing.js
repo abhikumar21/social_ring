@@ -8,4 +8,4 @@
 
 //index.js
 // app.use('/auth', AuthRoute) => router.post('/register', registerUser) =>  res.status(200).json(newUser)
-//1:05:57
+//1:39

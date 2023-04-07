@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import Bot from '../img_home/bot.jpg'
 import './Posts.css'
 import Avatar from '@mui/material/Avatar';
@@ -8,28 +8,66 @@ import { Dialog } from '@headlessui/react'
 import P1 from '../img_home/p1.jpg'
 import P2 from '../img_home/p2.jpg'
 import P3 from '../img_home/p3.jpg'
+import {useSelector} from 'react-redux'
+import { uploadImage } from '../action/uploadAction';
+import { useDispatch } from 'react-redux';
+import { uploadPost } from '../action/uploadAction';
 
-
-//1:16
 
 
 
 const Posts = () => {
-
+  // const loading = useSelector((state) => state.postReducer.uploading)
   const [image, setImage] = useState(null)
   const imageRef = useRef();
+  const desc = useRef()
+  const {user} = useSelector((state)=>state.authReducer.authData)
+  const {posts, loading} = useSelector((state)=> state.postReducer)
 
+  const dispatch = useDispatch()
   let [isOpen, setIsOpen] = useState(true)
 
   const onImageChange = (event) => {
     if(event.target.files && event.target.files[0]) {
       let img= event.target.files[0];
-      setImage({
-        image: URL.createObjectURL(img),
-      })
+      setImage(img)
     }
     
   }
+
+  
+  const reset = () => {
+    setImage(null)
+    desc.current.value = ""
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value
+    }
+    if(image) {
+      const data = new FormData();
+      const filename = Date.now() + image.name
+      data.append("name", filename)
+      data.append("file", image)
+      newPost.image = filename;
+      console.log(newPost)
+
+      try {
+        dispatch(uploadImage(data))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+     dispatch(uploadPost(newPost))
+     reset()
+  }
+
+  useEffect (() => {
+    // dispatch(getIimelinePosts(user._id))
+  }, [])
 
   const Postdata = [
     {
@@ -63,7 +101,7 @@ const Posts = () => {
       <div className='upload px-5 py-5 '>
         <div className='image flex mb-10'>
          <Avatar alt="Cindy Baker" src={Bot}  />
-         <input placeholder='caption' className='ml-6 w-full'></input>
+         <input ref={desc} placeholder='caption' className='caption ml-6 w-full'></input>
         </div>
 
         <div className='uploadbtn '>
@@ -115,14 +153,14 @@ const Posts = () => {
       {image ? (
        <div className='post my-10'>
         <div className='flex justify-around'>
-          <button className=''>Post</button> 
+          <button className='' onClick={handleSubmit} disabled= {loading}> {loading? "Uploading..." : "Post"} </button> 
           <button className='' onClick={()=> setImage(null)}>Delete</button>  
         </div>
         <div className='username'>
             <h6>hello</h6>
         </div>
           <div>
-          <img src={image.image}></img>
+          <img src={URL.createObjectURL(image)}></img>
           </div>
           <div className=' bg-blue-200'>
           <div className='h-14 flex flex-row' >
@@ -143,7 +181,7 @@ const Posts = () => {
           }
 
         {
-          Postdata.map((post, id) => {
+          posts.map((post, id) => {
             return <Post data={post} id={id} />
           })
         }
