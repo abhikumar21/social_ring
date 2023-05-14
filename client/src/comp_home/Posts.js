@@ -1,80 +1,95 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import Bot from '../img_home/bot.jpg'
 import './Posts.css'
-import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar'
 import Post from './Post.js'
 import { Dialog } from '@headlessui/react'
-// import { Postdata } from './Postdata';
 import P1 from '../img_home/p1.jpg'
 import P2 from '../img_home/p2.jpg'
 import P3 from '../img_home/p3.jpg'
-
-
-//1:16
+import {useSelector, useDispatch} from 'react-redux'
+import { uploadImage } from '../action/uploadAction';
+import { uploadPost } from '../action/uploadAction';
+import { getTimelinePosts } from '../action/postAction.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faImage, faVideo, faLocationDot} from '@fortawesome/free-solid-svg-icons'
 
 
 
 const Posts = () => {
-
+  const loadingnew = useSelector((state) => state.postReducer.uploading)
   const [image, setImage] = useState(null)
   const imageRef = useRef();
+  const desc = useRef()
+  const {user} = useSelector((state)=>state.authReducer.authData)
+  const {posts, loading} = useSelector((state)=> state.postReducer)
+  //change to posts
 
+  const dispatch = useDispatch()
   let [isOpen, setIsOpen] = useState(true)
 
   const onImageChange = (event) => {
     if(event.target.files && event.target.files[0]) {
       let img= event.target.files[0];
-      setImage({
-        image: URL.createObjectURL(img),
-      })
+      setImage(img)
     }
     
   }
 
-  const Postdata = [
-    {
-      img: P1,
-      name: 'Abhishek',
-      caption: "Hello this is my first post",
-      likes: 4322,
-      liked: true
-  },
-
-  {
-      img: P2,
-      name: 'Sachin',
-      caption: "Hello this is my second post",
-      likes: 4390,
-      liked: false
-  },
-
-  {
-      img: P3,
-      name: 'Shashank',
-      caption: "Hey, there I am using socially",
-      likes: 40,
-      liked: true
+  
+  const reset = () => {
+    setImage(null)
+    desc.current.value = ""
   }
-  ]
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value
+    }
+    if(image) {
+      const data = new FormData();
+      const filename = Date.now() + image.name
+      data.append("name", filename)
+      data.append("file", image)
+      newPost.image = filename;
+      console.log(newPost)
+
+      try {
+        dispatch(uploadImage(data))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+     dispatch(uploadPost(newPost))
+     reset()
+  }
+
+  useEffect (() => {
+    dispatch(getTimelinePosts(user._id))
+  }, [])
+
+
 
 
   return (
-    <div className='h-full pl-10 pr-10'>
-      <div className='upload px-5 py-5 '>
+    <div className='middlebar h-full pl-10 pr-10 z-50'>
+      <div className='upload px-5 py-5 rounded-lg'>
         <div className='image flex mb-10'>
          <Avatar alt="Cindy Baker" src={Bot}  />
-         <input placeholder='caption' className='ml-6 w-full'></input>
+         <input ref={desc} placeholder='caption' className='caption ml-6 w-full rounded-lg px-5'></input>
         </div>
 
         <div className='uploadbtn '>
           <button className='btn'
           onClick={()=>imageRef.current.click()}
-          >
+          ><FontAwesomeIcon icon={faImage} />
             photo
           </button>
 
-          <button className='btn'>video</button>
-          <button className='btn'>location</button>
+          <button className='btn'><FontAwesomeIcon icon={faVideo} />video</button>
+          <button className='btn'><FontAwesomeIcon icon={faLocationDot} />location</button>
           <button className='btn'>schedule</button>
 
           <button className='btn postbtn bg-blue-600'>Post</button>
@@ -110,19 +125,19 @@ const Posts = () => {
 
 
 {/* post /////////////////// */}
-    <div className='post bg-white mt-10 w-full h-auto text-black overflow-hidden overflow-y-scroll'>
+    <div className='posts mt-10 w-full h-auto text-black'>
 
       {image ? (
-       <div className='post my-10'>
+       <div className='post '>
         <div className='flex justify-around'>
-          <button className=''>Post</button> 
+          <button className='' onClick={handleSubmit} disabled= {loadingnew}> {loadingnew? "Uploading..." : "Post"} </button> 
           <button className='' onClick={()=> setImage(null)}>Delete</button>  
         </div>
         <div className='username'>
             <h6>hello</h6>
         </div>
           <div>
-          <img src={image.image}></img>
+          <img src={URL.createObjectURL(image)}></img>
           </div>
           <div className=' bg-blue-200'>
           <div className='h-14 flex flex-row' >
@@ -138,15 +153,20 @@ const Posts = () => {
          </div>
          </div>
           ) : (
-          <div></div>
+          <></>
           )
           }
-
-        {
-          Postdata.map((post, id) => {
+      {posts ? (
+        
+          posts.map((post, id) => {
             return <Post data={post} id={id} />
           })
-        }
+        
+      ) : (
+        <></>
+      )
+}
+
       </div>
 
     </div>

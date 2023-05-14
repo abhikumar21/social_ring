@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
 import './Auth.css'
+<<<<<<< HEAD
 import {useNavigate} from 'react-router-dom'
+=======
+import {useDispatch} from 'react-redux'
+import { logIn, signUp } from '../../action/AuthAction';
+//loading functionality ( 47:00 )
+
+>>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
 
 
 const Auth = () => {
 
+<<<<<<< HEAD
   const navigate = useNavigate();
+=======
+  const dispatch = useDispatch();
+>>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
   
-  const [isSignUp, setIsSignUp] = useState(false)
-  const [confirmPass, setConfirmPass] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(true)
+  const [confirmPass, setConfirmPass] = useState(true)
   const [data, setData] = useState({firstname:"", lastname:"", username:"", password:"", password:"", cpassword:""})
 
  const handleChange = (e) => {
     setData({...data, [e.target.name]: e.target.value})
  };
 
+<<<<<<< HEAD
 
 
 const handeleSubmitRegister = async(e) => {
@@ -67,6 +79,24 @@ const handeleSubmitLogin = async(e) => {
     window.alert("INVALID CREDENTIALS")
   }
 }
+=======
+ const handeleSubmit =(e) => {
+ 
+   e.preventDefault();
+
+   if(isSignUp) {
+    data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(false);
+    console.log("signup")
+   }
+   else{
+    dispatch(logIn(data)) 
+    console.log("login") 
+   }
+ };
+
+ 
+
+>>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
 
  const resetForm = () => {
   setData(
@@ -84,7 +114,7 @@ const handeleSubmitLogin = async(e) => {
     </div>
 
 
-   { !isSignUp ?   
+   { isSignUp ?   
    //SignUp
    <div className='a-right'>
   <form type="submit" method="POST" 
@@ -136,10 +166,10 @@ const handeleSubmitLogin = async(e) => {
      ></input>
    </span>
 
-   {confirmPass ? <div className='confirm text-red-700'>*Confirm Password is not same</div> : <div></div>}
+   {!confirmPass ? <div className='confirm text-red-700'>*Confirm Password is not same</div> : <div></div>}
 
    <span className='flex justify-between my-4'>
-     <a href="#" className='' onClick={()=>{setIsSignUp(true); resetForm()}}>Already have an account. Login </a>
+     <a href="#" className='' onClick={()=>{setIsSignUp(false); resetForm()}}>Already have an account. Login </a>
      <button className='rbutton' 
      onClick={handeleSubmitRegister}
      >Sign Up</button>
@@ -175,8 +205,13 @@ const handeleSubmitLogin = async(e) => {
    </span>
 
    <span className='flex justify-between my-4'>
+<<<<<<< HEAD
    <a href="#" className='mr-6' onClick={()=>setIsSignUp(false)}>Don't have an account? Sign Up </a>
      <button className='rbutton' onClick={handeleSubmitLogin}>Login</button>
+=======
+   <a href="#" className='mr-6' onClick={()=>setIsSignUp(true)}>Don't have an account? Sign Up </a>
+     <button className='rbutton' onClick={handeleSubmit}>Login</button>
+>>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
    </span>
   </form>
  

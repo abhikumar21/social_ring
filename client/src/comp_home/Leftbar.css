@@ -1,6 +1,7 @@
 .grid1{
     display: grid;
     grid-template-columns: 1fr 0fr 1fr;
+    position: relative;
 
 }
 
@@ -17,3 +18,37 @@
     align-items: center;
     justify-content: center;
 }
+
+.searchbar{
+    position: relative;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #9a4cc1c2;
+    color: black;
+    
+
+}
+
+/* .sbx{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+} */
+
+
+.cardbg{
+    background: linear-gradient(10deg, rgb(247, 245, 248), rgb(204, 175, 31));
+    border-radius: 10px;
+   
+}
+
+.cardbg hr{
+    border: solid aliceblue 2px;
+    margin-right: 20px;
+    margin-left: 20px;
+    
+}
+
