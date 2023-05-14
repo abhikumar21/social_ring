@@ -8,4 +8,6 @@
 
 //index.js
 // app.use('/auth', AuthRoute) => router.post('/register', registerUser) =>  res.status(200).json(newUser)
-//1:39
+
+//upload, post :: client calls function upload() => action 
+//1:55 make rest api first

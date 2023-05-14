@@ -2,8 +2,14 @@ import React from 'react'
 
 const Rightbar = () => {
   return (
-    <div>
-      Rightbar
+    <div className='rightbar'>
+      <h3>Followers</h3>
+
+      <div className='followers'>
+        <div className='someuser'>
+          
+        </div>
+      </div>
     </div>
   )
 }
