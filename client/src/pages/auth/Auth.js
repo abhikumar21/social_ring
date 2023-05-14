@@ -1,22 +1,14 @@
 import React, { useState } from 'react'
 import './Auth.css'
-<<<<<<< HEAD
-import {useNavigate} from 'react-router-dom'
-=======
 import {useDispatch} from 'react-redux'
 import { logIn, signUp } from '../../action/AuthAction';
 //loading functionality ( 47:00 )
 
->>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
 
 
 const Auth = () => {
 
-<<<<<<< HEAD
-  const navigate = useNavigate();
-=======
   const dispatch = useDispatch();
->>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
   
   const [isSignUp, setIsSignUp] = useState(true)
   const [confirmPass, setConfirmPass] = useState(true)
@@ -26,60 +18,6 @@ const Auth = () => {
     setData({...data, [e.target.name]: e.target.value})
  };
 
-<<<<<<< HEAD
-
-
-const handeleSubmitRegister = async(e) => {
-  e.preventDefault();
-
-  const {firstname, lastname, username, password, cpassword} = data;  //name = user.name
-  
-  const res = await fetch("/auth/register", {
-    method: "POST",
-    headers:{
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      firstname, lastname, username, password, cpassword
-    })
-  })
-
-  const info = await res.json();
-  if(res.status===500 || !info) {
-    window.alert("Registration Failed");
-    console.log("Invalid registration")
-  }
-  else{
-    window.alert("Registration Successfull");
-    console.log("Successful Registration");
-    navigate('/');
-  }
-}
-
-const handeleSubmitLogin = async(e) => {
-  e.preventDefault();
-  const {username, password} = data;
-  const res = await fetch("/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type":"application/json"
-    },
-    body: JSON.stringify({
-      username, password
-    })
-  })
-
-  const info = await res.json();
-  if(res.status==200 && info) {
-    window.alert("LOGIN SUCCESSFUL")
-    // console.log(info);
-    navigate('/');
-  }
-  else{
-    window.alert("INVALID CREDENTIALS")
-  }
-}
-=======
  const handeleSubmit =(e) => {
  
    e.preventDefault();
@@ -96,7 +34,6 @@ const handeleSubmitLogin = async(e) => {
 
  
 
->>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
 
  const resetForm = () => {
   setData(
@@ -205,13 +142,8 @@ const handeleSubmitLogin = async(e) => {
    </span>
 
    <span className='flex justify-between my-4'>
-<<<<<<< HEAD
-   <a href="#" className='mr-6' onClick={()=>setIsSignUp(false)}>Don't have an account? Sign Up </a>
-     <button className='rbutton' onClick={handeleSubmitLogin}>Login</button>
-=======
    <a href="#" className='mr-6' onClick={()=>setIsSignUp(true)}>Don't have an account? Sign Up </a>
      <button className='rbutton' onClick={handeleSubmit}>Login</button>
->>>>>>> 7e36a2932fe8411019514aa59c74b62f838b638d
    </span>
   </form>
  
