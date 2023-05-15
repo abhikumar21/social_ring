@@ -9,6 +9,17 @@ export const uploadImage = (data) => async(dispatch) => {
     }
 }
 
+export const uploadProfileImg = (data) => async(dispatch) => {
+
+    try {
+        await UploadApi.uploadProfileImg(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 export const uploadPost = (data) => async(dispatch) => {
     dispatch({type: "UPLOAD_START"})
     try {
@@ -19,3 +30,4 @@ export const uploadPost = (data) => async(dispatch) => {
         dispatch({type:"UPLOAD_FAILED"})
     }
 }
+

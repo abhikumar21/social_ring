@@ -108,7 +108,7 @@ const Auth = () => {
    <span className='flex justify-between my-4'>
      <a href="#" className='' onClick={()=>{setIsSignUp(false); resetForm()}}>Already have an account. Login </a>
      <button className='rbutton' 
-     onClick={handeleSubmitRegister}
+     onClick={handeleSubmit} //
      >Sign Up</button>
    </span>
   </form>

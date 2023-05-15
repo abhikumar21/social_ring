@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Post.css'
 import Bot from '../img_home/bot.jpg'
 import Like from '../img_home/likeline.png'
 import Likedit from '../img_home/heartcolor.png'
@@ -23,7 +24,7 @@ const Post = ({data}) => {
 
   return (
 
-      <div className='post px-2 py-4 mb-10 bg-orange-300 rounded-lg h-1/2'>
+      <div className='post px-2 py-4 mb-10 bg-orange-300 rounded-lg relative'>
         <div className='username'>
             <h6>{data.name}</h6>
         </div>

@@ -125,7 +125,7 @@ const Posts = () => {
 
 
 {/* post /////////////////// */}
-    <div className='posts mt-10 w-full h-auto text-black'>
+    <div className='posts mt-10 w-full text-black h-full overflow-hidden overflow-y-scroll'>
 
       {image ? (
        <div className='post '>
