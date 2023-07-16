@@ -22,12 +22,13 @@ const UserSchema = mongoose.Schema(
             type: Boolean,
             default: false
         },
+        email: String,
         profilePicture: String,
         coverPicture: String,
         about: String,
         livesin: String,
         worksAt: String,
-        relationship: String,
+        bio: String,
         followers: [] , 
         following: [] 
     },

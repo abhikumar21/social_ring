@@ -1,7 +1,6 @@
 
 .home{
     background-color: rgb(31, 31, 37);
-    
 }
 
 
@@ -16,7 +15,6 @@
     filter: blur(80px);
     z-index: 1;
    
-
 }
 
 .orange{
@@ -32,8 +30,7 @@
 
 }
 
-.sections{
+/* .sections{
     display: grid;
-    grid-template-columns: 25% 50% 25%;
-    
-}
+    grid-template-columns: 80% 20%;
+} */

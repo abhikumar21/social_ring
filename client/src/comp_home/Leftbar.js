@@ -4,6 +4,9 @@ import {faMagnifyingGlass, faDragon} from '@fortawesome/free-solid-svg-icons'
 import Bot from '../img_home/bot.jpg'
 import { Button } from "@mui/material"
 import { useSelector } from "react-redux"
+import {Link, Navigate} from 'react-router-dom'
+import { useState } from "react"
+import LeftUsers from "./LeftUsers.js"
 
 
 
@@ -11,6 +14,9 @@ import { useSelector } from "react-redux"
 const Leftbar = () => {
 
    const {user} = useSelector((state)=> state.authReducer.authData)
+   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+   const ProfilePage = false;
+
 
   return (
     <div className='sidebar flex flex-col z-50'>
@@ -21,27 +27,46 @@ const Leftbar = () => {
          <FontAwesomeIcon icon={faMagnifyingGlass} className="sbx mr-3"/>
          </span>
 
-     <div className='cardbg h-1/3 w-full mt-12'>
+     <div className='cardbg h-96 w-full mt-12'>
       <div className='h-1/2 bg-transparent text-black flex justify-center align-middle'>
-        <img className="dpro absolute h-32 w-32 mt-10 rounded-full" src={Bot}></img>
-        <h2 className="relative font-bold text-2xl">Abhishek Kumar</h2>
+        <img className="dpro absolute h-32 w-32 mt-10 rounded-full" src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.jpg"}></img>
+        <h2 className="relative font-bold text-2xl">{user.firstname}</h2>
       </div>
 
       <div className="info">
       <hr className="hr1 mb-5"/>
       <div className='grid1 text-black'>
-        <div className="f1"><p><strong>3435</strong><p/>Followers</p></div>
+        <div className="f1"><p><strong></strong>{user.followers.length}<p/>Followers</p></div>
         <div className="vl bg-slate-500 w-1"></div>
-        <div className="f1"><p><strong>3435</strong><p/>Following</p></div>
+        <div className="f1"><p><strong>{user.following.length}</strong><p/>Following</p></div>
       </div>
       <hr className="hr2 mt-5"/>
 
-       <span className="flex align-middle justify-center mt-5 font-bold"><button className="profilebtn text-violet-800 text-2xl">My Profile</button></span>
+
+      {ProfilePage ? ""
+        :
+<span className="flex align-middle justify-center mt-5 font-bold">
+   <button className="profilebtn text-violet-800 text-2xl">
+     <Link to = {`/profile/${user._id}`} >
+       My Profile
+     </Link>
+   </button>
+  </span>
+      }
+       
       </div>
       
 
 
      </div>
+
+     <h3>Followers</h3>
+
+      <div className='followers'>
+        <div className='someuser my-5 py-5 px-2 '>
+        <LeftUsers/>
+        </div>
+      </div>
 
       
      

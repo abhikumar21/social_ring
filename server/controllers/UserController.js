@@ -1,4 +1,5 @@
 import UserModel from "../models/userModel.js";
+import jwt from 'jsonwebtoken'
 //1:15
 
 //git a user
@@ -25,21 +26,20 @@ export const getUser = async(req, res) => {
 //update a user
 export const updateUser = async(req, res) => {
     const id= req.params.id
-
-    const {currentUserId, currentUserAdminStatus, password} = req.body
-
-    if(id===currentUserId || currentUserAdminStatus) {
+    const {_id, currentUserAdminStatus, password} = req.body
+    if(id==_id) {
         try {
             const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
-            res.status(200).json(user)
-
+            const token = jwt.sign({
+                username: user.username, id: user._id
+            },
+            process.env.JWT_KEY, {expiresIn: '1hr'}
+            )
+            res.status(200).json({user, token})
         } catch (error) {
-            res.status(500).json(error)
-            
-        }
-        
+            res.status(500).json(error)  
+        }   
     }
-
     else{
         res.status(403).json("Access Denied! you can only update your own profile.")
     }

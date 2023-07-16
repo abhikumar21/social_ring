@@ -1,5 +1,5 @@
 
-import * as AuthApi from '../api/AuthRequest'
+import * as AuthApi from '../api/AuthRequest.js'
 
 export const logIn = (formData) =>  async(dispatch) => {
     dispatch({type: "AUTH_START"})
@@ -23,5 +23,9 @@ export const signUp = (formData) =>  async(dispatch) => {
         dispatch({type: "AUTH_FAIL"})
         
     }
+}
+
+export const logout = () =>  async(dispatch) => {
+    dispatch({type: "LOG_OUT"})
 }
 

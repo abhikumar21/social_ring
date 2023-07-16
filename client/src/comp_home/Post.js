@@ -23,7 +23,7 @@ const Post = ({data}) => {
 
   return (
 
-      <div className='post px-2 py-4 mb-10 bg-orange-300 rounded-lg h-1/2'>
+      <div className='post px-2 py-4 mb-10 bg-orange-300 rounded-lg'>
         <div className='username'>
             <h6>{data.name}</h6>
         </div>
@@ -38,7 +38,7 @@ const Post = ({data}) => {
         </div>
         <span className='ml-2'>{likes} likes</span>
         <div className='caption ml-2'>
-            <span><strong>{data.name} Abhishek Kumar : </strong>{data.desc}</span>
+            <span><strong>{data.firstname} : </strong>{data.desc}</span>
         </div>
 
         </div>

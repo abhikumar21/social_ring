@@ -1,15 +1,11 @@
 import React from 'react'
+import './Rightbar.css'
+
 
 const Rightbar = () => {
   return (
     <div className='rightbar'>
-      <h3>Followers</h3>
-
-      <div className='followers'>
-        <div className='someuser'>
-          
-        </div>
-      </div>
+      This is Rightbar
     </div>
   )
 }

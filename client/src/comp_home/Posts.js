@@ -3,10 +3,6 @@ import Bot from '../img_home/bot.jpg'
 import './Posts.css'
 import Avatar from '@mui/material/Avatar'
 import Post from './Post.js'
-import { Dialog } from '@headlessui/react'
-import P1 from '../img_home/p1.jpg'
-import P2 from '../img_home/p2.jpg'
-import P3 from '../img_home/p3.jpg'
 import {useSelector, useDispatch} from 'react-redux'
 import { uploadImage } from '../action/uploadAction';
 import { uploadPost } from '../action/uploadAction';
@@ -22,7 +18,8 @@ const Posts = () => {
   const imageRef = useRef();
   const desc = useRef()
   const {user} = useSelector((state)=>state.authReducer.authData)
-  const {posts, loading} = useSelector((state)=> state.postReducer)
+  const {posts} = useSelector((state)=> state.postReducer)
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   //change to posts
 
   const dispatch = useDispatch()
@@ -50,11 +47,28 @@ const Posts = () => {
     }
     if(image) {
       const data = new FormData();
-      const filename = Date.now() + image.name
+      const imgName = image.name
+      let i= 0;
+      let l= imgName.length;
+      while(1) {
+        if(i>=l) {
+          break;
+        }
+        if(imgName[i]=='.')  {
+          var del_str = imgName.substring(i, l);
+            var newImg = imgName.replace(del_str, "");
+            break;
+        }
+        i++;
+      }
+      // console.log(newImg)
+      const f_name = newImg + Date.now()
+      const filename = f_name.concat(del_str);
+      // console.log(filename)
+
       data.append("name", filename)
       data.append("file", image)
       newPost.image = filename;
-      console.log(newPost)
 
       try {
         dispatch(uploadImage(data))
@@ -65,6 +79,8 @@ const Posts = () => {
      dispatch(uploadPost(newPost))
      reset()
   }
+
+
 
   useEffect (() => {
     dispatch(getTimelinePosts(user._id))
@@ -77,7 +93,7 @@ const Posts = () => {
     <div className='middlebar h-full pl-10 pr-10 z-50'>
       <div className='upload px-5 py-5 rounded-lg'>
         <div className='image flex mb-10'>
-         <Avatar alt="Cindy Baker" src={Bot}  />
+         <Avatar alt="Cindy Baker" src={ user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.jpg"}  />
          <input ref={desc} placeholder='caption' className='caption ml-6 w-full rounded-lg px-5'></input>
         </div>
 
@@ -125,7 +141,7 @@ const Posts = () => {
 
 
 {/* post /////////////////// */}
-    <div className='posts mt-10 w-full h-auto text-black'>
+    <div className='posts mt-10 w-full text-black overflow-hidden overflow-y-scroll'>
 
       {image ? (
        <div className='post '>
@@ -141,7 +157,7 @@ const Posts = () => {
           </div>
           <div className=' bg-blue-200'>
           <div className='h-14 flex flex-row' >
-            {/* <img className='h-1/2' src={data.liked==true?Like:Likeco}></img>
+            {/* <img className='h-1/2'</img>
             <img className='h-1/2' src={Share}></img>
             <img className='h-1/2' src={Bookmark}></img> */}
           </div>

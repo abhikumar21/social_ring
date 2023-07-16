@@ -1,9 +1,10 @@
 
 const postReducer = (
-    state = {posts: null, loading: false, error: false, uploading: false}, 
+    state = {posts: [], loading: false, error: false, uploading: false}, 
     action
 ) => {
     switch(action.type) {
+        //post.js
         case "UPLOAD_START": 
             return {...state, uploading: true, error: false}
 
@@ -12,6 +13,16 @@ const postReducer = (
 
         case "UPLOAD_FAIL":
             return {...state, uploading: false, error: true}
+
+            //posts.js
+        case "RETRIEVING_START" :
+            return { ...state, loading: true, error: false};
+
+        case "RETRIEVING_SUCCESS" : 
+            return { ...state, posts: action.data, loading: false, error: false};
+            
+        case "RETRIEVING_FAIL" : 
+            return { ...state, loading: false, error: true};    
 
         default:
             return state;
