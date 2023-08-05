@@ -5,8 +5,9 @@ import Bot from '../img_home/bot.jpg'
 import { Button } from "@mui/material"
 import { useSelector } from "react-redux"
 import {Link, Navigate} from 'react-router-dom'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LeftUsers from "./LeftUsers.js"
+import { getAllUsers } from "../api/UserRequest"
 
 
 
@@ -16,6 +17,16 @@ const Leftbar = () => {
    const {user} = useSelector((state)=> state.authReducer.authData)
    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
    const ProfilePage = false;
+   const [followUsers, setFollowUsers] = useState([])
+
+   useEffect(()=> {
+    const fetchUsers = async() => {
+      const {data} = await getAllUsers();
+      setFollowUsers(data)
+      // console.log(data)
+    }
+   fetchUsers()
+   }, [1])
 
 
   return (
@@ -28,7 +39,7 @@ const Leftbar = () => {
          </span>
 
      <div className='cardbg h-96 w-full mt-12'>
-      <div className='h-1/2 bg-transparent text-black flex justify-center align-middle'>
+      <div className='relative h-1/2 bg-transparent text-black flex justify-center align-middle'>
         <img className="dpro absolute h-32 w-32 mt-10 rounded-full" src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.jpg"}></img>
         <h2 className="relative font-bold text-2xl">{user.firstname}</h2>
       </div>
@@ -55,17 +66,18 @@ const Leftbar = () => {
       }
        
       </div>
-      
-
 
      </div>
 
-     <h3>Followers</h3>
+     <h3 className="mt-5">People You may follow</h3>
 
-      <div className='followers'>
-        <div className='someuser my-5 py-5 px-2 '>
-        <LeftUsers/>
-        </div>
+      <div className='left_users'>
+          { followUsers.map((followUser)=> {
+            if(user._id !== followUser._id) {
+              return <LeftUsers key={followUser._id} followUser={followUser} />
+            }
+          })}
+        
       </div>
 
       

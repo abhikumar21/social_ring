@@ -24,11 +24,11 @@ const Auth = () => {
 
    if(isSignUp) {
     data.password === data.cpassword ? dispatch(signUp(data)) : setConfirmPass(false);
-    console.log("signup")
+    // console.log("signup")
    }
    else{
     dispatch(logIn(data)) 
-    console.log("login") 
+    // console.log("login") 
    }
  };
 

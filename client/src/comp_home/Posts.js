@@ -9,7 +9,12 @@ import { uploadPost } from '../action/uploadAction';
 import { getTimelinePosts } from '../action/postAction.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faImage, faVideo, faLocationDot} from '@fortawesome/free-solid-svg-icons'
-
+import Like from '../img_home/likeline.png'
+import Likedit from '../img_home/heartcolor.png'
+import Bookmark from '../img_home/bookmarkline.png'
+import Share from '../img_home/share.png'
+import { getAllUsers } from '../api/UserRequest'
+import ModalGen from '../pages/Profile/ModalGen'
 
 
 const Posts = () => {
@@ -20,7 +25,18 @@ const Posts = () => {
   const {user} = useSelector((state)=>state.authReducer.authData)
   const {posts} = useSelector((state)=> state.postReducer)
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
+  const [postusers, setPostusers] = useState([])
   //change to posts
+
+  useEffect(()=> {
+    const fetchUsers = async() => {
+      const {data} = await getAllUsers();
+      setPostusers(data)
+    }
+    fetchUsers();
+   },[])
+  //  console.log(postusers)
+
 
   const dispatch = useDispatch()
   let [isOpen, setIsOpen] = useState(true)
@@ -69,7 +85,7 @@ const Posts = () => {
       data.append("name", filename)
       data.append("file", image)
       newPost.image = filename;
-
+   console.log(data)
       try {
         dispatch(uploadImage(data))
       } catch (error) {
@@ -97,85 +113,66 @@ const Posts = () => {
          <input ref={desc} placeholder='caption' className='caption ml-6 w-full rounded-lg px-5'></input>
         </div>
 
-        <div className='uploadbtn '>
+        <div className='post_upload_btn'>
           <button className='btn'
           onClick={()=>imageRef.current.click()}
-          ><FontAwesomeIcon icon={faImage} />
-            photo
+          ><FontAwesomeIcon icon={faImage} /> photo
           </button>
 
-          <button className='btn'><FontAwesomeIcon icon={faVideo} />video</button>
-          <button className='btn'><FontAwesomeIcon icon={faLocationDot} />location</button>
-          <button className='btn'>schedule</button>
+          <button className='btn'><FontAwesomeIcon icon={faVideo} /> video</button>
+          <button className='btn'><FontAwesomeIcon icon={faLocationDot} /> location</button>
+          {/* <button className='btn'>schedule</button> */}
+          <ModalGen/>
 
-          <button className='btn postbtn bg-blue-600'>Post</button>
+          <button className='btn postbtn'>Post</button>
 
           <div style={{display:"none"}}>
             <input type="file" name="myImage" ref={imageRef} onChange={onImageChange}></input>
           </div>
           
         </div>
-
-        {/* {image && (
-          <div className="previewimage">
-          </div>
-        )} */}
-
-         {/* {image ? (
-            <div className="previewimage">
-             </div>
-          ) : null
-          } */}
-
-         {/* {image ? (
-            <div className="previewimage px-10 py-10 bg-white">
-              <button className='bg-red text-black' onClick={()=>setImage(null)}>Close</button>
-              <img src={image.image} alt="img"/>
-             </div>
-          ) : (
-            <div></div>
-          )} */}
    
-       
       </div>
 
 
 {/* post /////////////////// */}
-    <div className='posts mt-10 w-full text-black overflow-hidden overflow-y-scroll'>
+    <div className='posts mt-10 w-full text-black overflow-hidden overflow-y-scroll scrollbar-hidden'>
 
-      {image ? (
-       <div className='post '>
+      {image ? 
+       (
+       <div className='post px-2 py-4 mb-10 bg-orange-300 rounded-lg'>
         <div className='flex justify-around'>
-          <button className='' onClick={handleSubmit} disabled= {loadingnew}> {loadingnew? "Uploading..." : "Post"} </button> 
-          <button className='' onClick={()=> setImage(null)}>Delete</button>  
+          <button className='text-blue-800 hover:bg-gray-400 px-5 py-1 mb-4 rounded-md' onClick={handleSubmit} disabled= {loadingnew}> {loadingnew? "Uploading..." : "Post"} </button> 
+          <button className='text-red-700 hover:bg-gray-400 px-5 py-1 mb-4 rounded-md' onClick={()=> setImage(null)}>Delete</button>  
         </div>
-        <div className='username'>
-            <h6>hello</h6>
-        </div>
-          <div>
-          <img src={URL.createObjectURL(image)}></img>
+       
+         <div>
+          <img className="rounded-lg" src={URL.createObjectURL(image)}></img>
+         </div>
+         <div className=''>
+          <div className='h-14 flex flex-row pt-2 align-middle' >
+            <img className='h-1/2 mx-2' src={Like}></img>
+            <img className='h-1/2 mx-2' src={Share}></img>
+            <img className='h-1/2 mx-2' src={Bookmark}></img>
           </div>
-          <div className=' bg-blue-200'>
-          <div className='h-14 flex flex-row' >
-            {/* <img className='h-1/2'</img>
-            <img className='h-1/2' src={Share}></img>
-            <img className='h-1/2' src={Bookmark}></img> */}
-          </div>
-          <span>3683</span>
+          <span>Likes</span>
           <div className='caption'>
             <span><strong>Username : </strong>Caption</span>
           </div>
 
          </div>
-         </div>
+        </div>
           ) : (
           <></>
-          )
-          }
+       )
+      }
+          
       {posts ? (
         
           posts.map((post, id) => {
-            return <Post data={post} id={id} />
+            
+            const Userdata = postusers.find((user)=> user._id === post.userId);
+            return <Post key={id} data={post} id={id} Userdata={Userdata} />
           })
         
       ) : (

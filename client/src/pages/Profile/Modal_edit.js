@@ -25,13 +25,13 @@ const style = {
 const Modal_edit = ({profileUserId, data, show}) => {
     const dispatch = useDispatch();
     const params = useParams();
-    console.log(show)
     const [open, setOpen] = useState(false);
     useEffect(()=>setOpen(show),[show])
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const {password, ...other} = data;
-
+    const {user} = useSelector((state)=>state.authReducer.authData)
+    console.log(user, "userModel")
     const imageRef = useRef();
     const [image, setImage] = useState(null)
     const onImageChange = (event) => {

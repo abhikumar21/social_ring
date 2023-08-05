@@ -4,6 +4,9 @@
 // npm i nodemon
 // password: 8GaAkICh8saLLaqh
 
+//position 1. static=> rel, abs, ... (image)
+//         2. z-index
+
 // mongodb+srv://Abhishek:<password>@cluster0.qg8cxjp.mongodb.net/?retryWrites=true&w=majority
 
 //index.js

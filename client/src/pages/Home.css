@@ -1,6 +1,12 @@
 
 .home{
+    background: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgb(31, 31, 37);
+    overflow: auto;
 }
 
 
@@ -12,9 +18,7 @@
     position: fixed;
     height: 80px;
     width: 120px;
-    filter: blur(80px);
-    z-index: 1;
-   
+    filter: blur(80px); 
 }
 
 .orange{
@@ -26,8 +30,6 @@
     height: 200px;
     width: 200px;
     filter: blur(110px);
-    z-index: 1;
-
 }
 
 /* .sections{

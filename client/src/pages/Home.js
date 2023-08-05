@@ -17,8 +17,8 @@ const Home = () => {
 
   return (
     <div className='home h-screen text-white px-8 pt-8 pb-4'>
-      <div className='yellow'></div>
-      <div className='orange'></div>
+      <div className='yellow z-0'></div>
+      <div className='orange z-0'></div>
      <div className='sections h-full w-full'>
       
       <Routes>

@@ -4,10 +4,13 @@
     overflow-y: scroll;
 }
 
+.profile_page::-webkit-scrollbar{
+    width: 0;
+}
+
 .profile_info{
     display: grid;
     grid-template-columns: 1fr 2fr;
-
 }
 
 .pr_dpro{
@@ -31,7 +34,7 @@
 .pr_posts{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 15px;
 }
 
@@ -68,4 +71,11 @@
     display: flex;
     position: relative;
     margin-left: 280px;
+}
+
+
+.modal_box .img_gen{
+    border: 2px solid black !important;
+    border-radius: 15px;
+    padding: 5px 20px;
 }

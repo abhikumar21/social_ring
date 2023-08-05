@@ -1,1 +1,11 @@
 
+.followers{
+    background: linear-gradient(30deg, rgb(179, 234, 96), rgb(224, 76, 238));
+ }
+ 
+ 
+ .someuser{
+     display: grid;
+     grid-template-columns: 1fr 4fr 2fr;
+     
+ }

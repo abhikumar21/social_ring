@@ -9,14 +9,24 @@
     border-radius: 50%;
 } */
 
-.uploadbtn{
+.post_upload_btn{
     display: flex;
     justify-content: space-around;
 }
 
-.uploadbtn .btn{
+
+.post_upload_btn .btn{
    background-color: aqua;
    color: black;
+   padding: 2px 4px;
+   border-radius: 10px;
+
+}
+
+.post_upload_btn .postbtn{
+   background-color: rgb(156, 0, 0) !important;
+   color: aliceblue !important;
+   padding: 4px 8px !important;
 }
 
 .previewimage{
@@ -32,5 +42,22 @@
 }
 
 .posts{
-    height: 80vh;
+    height: 100vh;
 }
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+ }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: aliceblue;
+    border-radius: 10px;
+  }
+  
+  /* .scrollbar-hidden {
+    scrollbar-width: none;
+  } */
+
+  /* .scrollbar-hidden::-webkit-scrollbar {
+    width: 0rem !important;
+  } */

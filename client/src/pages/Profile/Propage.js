@@ -19,7 +19,7 @@ const ProPage = () => {
   const {user} = useSelector((state)=> state.authReducer.authData)
   const posts = useSelector((state)=> state.postReducer.posts)
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  
+  console.log(posts)
   const dispatch = useDispatch();
   const params = useParams();
   const profileUserId = params.id;
@@ -34,7 +34,6 @@ const ProPage = () => {
   const handleLogout = () => {
     dispatch(logout());
   }
-
 
   useEffect(()=> {
     const fetchProfileUser = async() => {
@@ -51,14 +50,14 @@ const ProPage = () => {
     fetchProfileUser();
   },[user])
 
-  useEffect(() => {
-    console.log(profileUser);
-  }, [profileUser]);
+  // useEffect(() => {
+  //   console.log(profileUser);
+  // }, [profileUser]);
 
 
   return (
     <>
-     <div className="profile_page bg-gray-700">
+     <div className="profile_page">
       <div className='profile_info'>
         <div className="pr_dp flex align-middle justify-center" >
          
@@ -69,9 +68,9 @@ const ProPage = () => {
 
         <div className="pr_info py-2">
 
-          <div className='pr1_info flexed my-4'>
+          <div className='pr1_info flexed mt-4 mb-12'>
             <Link to="../home">
-            <button className="pr_info1">{profileUser.username}</button>
+            <button className="pr_info1 text-[25px]">{profileUser.username}</button>
             </Link>
             {profileUserId===user._id ? <>
                         <button className="pr_info2 bg-blue-700" onClick={handleFollow} >Follow</button>
@@ -85,7 +84,7 @@ const ProPage = () => {
  
           </div>
   
-           <div className="pr2_info flexed">
+           <div className="pr2_info flexed text-[18px] mb-5">
             <p>
               {posts.filter((post)=> post.userId == profileUserId).length } posts</p>
             <a>{profileUser ? profileUser.followers.length : 0} followers</a>
@@ -93,7 +92,7 @@ const ProPage = () => {
            </div>
 
            <div className="pr3_info">
-            <h4>{profileUser.firstname}</h4>
+            <h4 className='text-[18px]'>{profileUser.firstname}</h4>
             <h5>{profileUser.worksAt}</h5>
             <p>{profileUser.about}</p>
            </div>
@@ -105,7 +104,7 @@ const ProPage = () => {
       <div className="pr_posts mt-28">
         {
          allposts.map((post, id) => {
-          return <div className="pr_post1"><img src={ post.image ? process.env.REACT_APP_PUBLIC_FOLDER + post.image : ""} /></div>
+          return <div className="pr_post1 z-10"><img className='' src={ post.image ? process.env.REACT_APP_PUBLIC_FOLDER + post.image : ""} /></div>
          })
          
         }
@@ -113,7 +112,7 @@ const ProPage = () => {
       
      </div>
 
-     <Rightbar/>
+     {/* <Rightbar/> */}
     </>
   )
 }
