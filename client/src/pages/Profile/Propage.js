@@ -23,7 +23,7 @@ const ProPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const profileUserId = params.id;
-  const allposts = posts.filter((post) => post.userId == profileUserId)
+  const allposts = posts.filter((post) => post.userId === profileUserId)
   const [profileUser, setProfileUser] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -86,7 +86,7 @@ const ProPage = () => {
   
            <div className="pr2_info flexed text-[18px] mb-5">
             <p>
-              {posts.filter((post)=> post.userId == profileUserId).length } posts</p>
+              {posts.filter((post)=> post.userId === profileUserId).length } posts</p>
             <a>{profileUser ? profileUser.followers.length : 0} followers</a>
             <a>{profileUser ? profileUser.following.length : 0} following</a>
            </div>
