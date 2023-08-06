@@ -19,13 +19,7 @@ app.use('/image', express.static("image"))
 //middleware
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
-app.use(
-    cors({
-      origin: 'https://64cfcdb574696f6dd34b9ccc--socialring.netlify.app',
-      methods: ['POST'],
-      allowedHeaders: ['Content-Type'],
-    })
-  );
+app.use(cors());
 
 dotenv.config()
 
