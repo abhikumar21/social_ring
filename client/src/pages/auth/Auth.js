@@ -12,7 +12,7 @@ const Auth = () => {
   
   const [isSignUp, setIsSignUp] = useState(true)
   const [confirmPass, setConfirmPass] = useState(true)
-  const [data, setData] = useState({firstname:"", lastname:"", username:"", password:"", password:"", cpassword:""})
+  const [data, setData] = useState({firstname:"", lastname:"", username:"", password:"", cpassword:""})
 
  const handleChange = (e) => {
     setData({...data, [e.target.name]: e.target.value})
@@ -37,7 +37,7 @@ const Auth = () => {
 
  const resetForm = () => {
   setData(
-    {firstname:"", lastname:"", username:"", password:"", password:"", cpassword:""}
+    {firstname:"", lastname:"", username:"", password:"", cpassword:""}
   )
 };
 

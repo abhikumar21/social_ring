@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Rightbar from '../../comp_home/Rightbar';
+// import Rightbar from '../../comp_home/Rightbar';
 import './Propage.css'
 import {Link, useParams} from 'react-router-dom';
-import Posts from '../../comp_home/Posts';
-import Bot from '../../img_home/bot.jpg';
-import { followuser } from '../../api/UserRequest';
+// import Posts from '../../comp_home/Posts';
+// import Bot from '../../img_home/bot.jpg';
+// import { followuser } from '../../api/UserRequest';
 import Modal_edit from './Modal_edit';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
+// import Button from '@mui/material/Button';
+// import Modal from '@mui/material/Modal';
 import * as UserApi from '../../api/UserRequest';
 import { logout } from '../../action/AuthAction';
 
