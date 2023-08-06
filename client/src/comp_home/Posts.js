@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react'
-import Bot from '../img_home/bot.jpg'
+// import Bot from '../img_home/bot.jpg'
 import './Posts.css'
 import Avatar from '@mui/material/Avatar'
 import Post from './Post.js'
@@ -10,7 +10,7 @@ import { getTimelinePosts } from '../action/postAction.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faImage, faVideo, faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import Like from '../img_home/likeline.png'
-import Likedit from '../img_home/heartcolor.png'
+// import Likedit from '../img_home/heartcolor.png'
 import Bookmark from '../img_home/bookmarkline.png'
 import Share from '../img_home/share.png'
 import { getAllUsers } from '../api/UserRequest'
@@ -39,7 +39,7 @@ const Posts = () => {
 
 
   const dispatch = useDispatch()
-  let [isOpen, setIsOpen] = useState(true)
+  // let [isOpen, setIsOpen] = useState(true)
 
   const onImageChange = (event) => {
     if(event.target.files && event.target.files[0]) {
@@ -70,7 +70,7 @@ const Posts = () => {
         if(i>=l) {
           break;
         }
-        if(imgName[i]=='.')  {
+        if(imgName[i]==='.')  {
           var del_str = imgName.substring(i, l);
             var newImg = imgName.replace(del_str, "");
             break;

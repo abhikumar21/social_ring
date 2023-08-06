@@ -1,10 +1,10 @@
 import "./Leftbar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMagnifyingGlass, faDragon} from '@fortawesome/free-solid-svg-icons'
-import Bot from '../img_home/bot.jpg'
-import { Button } from "@mui/material"
+// import Bot from '../img_home/bot.jpg'
+// import { Button } from "@mui/material"
 import { useSelector } from "react-redux"
-import {Link, Navigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { useEffect, useState } from "react"
 import LeftUsers from "./LeftUsers.js"
 import { getAllUsers } from "../api/UserRequest"
@@ -26,7 +26,7 @@ const Leftbar = () => {
       // console.log(data)
     }
    fetchUsers()
-   }, [1])
+   }, [])
 
 
   return (
@@ -40,7 +40,7 @@ const Leftbar = () => {
 
      <div className='cardbg h-96 w-full mt-12'>
       <div className='relative h-1/2 bg-transparent text-black flex justify-center align-middle'>
-        <img className="dpro absolute h-32 w-32 mt-10 rounded-full" src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.jpg"}></img>
+        <img className="dpro absolute h-32 w-32 mt-10 rounded-full" src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "defaultProfile.jpg"} alt="image"></img>
         <h2 className="relative font-bold text-2xl">{user.firstname}</h2>
       </div>
 
