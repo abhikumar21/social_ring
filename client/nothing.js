@@ -1,4 +1,4 @@
 //background-color: var(--inputColor)
 
 //deploying
-//set cors, set proxy
+//set cors, remove proxy,
