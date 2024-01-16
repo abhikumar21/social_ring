@@ -10,7 +10,7 @@ const LeftUsers = ({followUser}) => {
 
 const {user} = useSelector((state)=>state.authReducer.authData)
 const [followed, setFollowed] = useState(user.following.includes(followUser._id))
-const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+// const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
  const dispatch = useDispatch()
 //  console.log(user)
 // console.log(followUser._id, user)
@@ -27,9 +27,9 @@ const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <>
-    <div className="followers relative rounded-lg">
+     <div className="followers relative rounded-lg">
         <div className='someuser my-2 py-3 px-4 '>
-        <Avatar alt="Cindy Baker" src={followUser.profilePicture ? serverPublic + followUser.profilePicture : serverPublic + "defaultProfile.jpg"}  />  
+        <Avatar alt="Cindy Baker" src={followUser.profilePicture ? process.env.REACT_APP_PUBLIC_FOLDER + followUser.profilePicture : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.jpg"}  />  
         {/* <div className='h-15 w-15 rounded-full overflow-hidden'><img src={followUser.profilePicture ? serverPublic + followUser.profilePicture : serverPublic + "defaultProfile.jpg"} className='h-full w-auto'></img></div> */}
         <Link to = {`/profile/${followUser._id}`} className='name text-black'>
            <h3 className='text-xl'>{followUser?.firstname + " " + followUser?.lastname}</h3>
@@ -38,7 +38,7 @@ const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
          {followed ? <button onClick={handleUnfollow}>Unfollow</button> : <button onClick={handleFollow}>Follow</button>}
         
         </div> 
-        </div>
+     </div>
     </>
   )
 }

@@ -1,7 +1,13 @@
+
+// server  ///////////
 // npm init 
+//npm i express
 // npm i mongoose 
 // npm i body-parser
 // npm i nodemon
+// test -> "start":"nodemon index.js"
+// "type":"module" => import ... from ...
+
 // password: 8GaAkICh8saLLaqh
 
 //position 1. static=> rel, abs, ... (image)
@@ -16,3 +22,7 @@
 //1:55 make rest api first
 
 //2:36
+
+
+
+// client 

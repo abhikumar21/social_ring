@@ -1,0 +1,71 @@
+
+.chatpage{
+    display: flex;
+    height: 100%;
+}
+
+.people{
+    height: 100%;
+    width: 300px;
+    background-color: rgb(62, 142, 211);
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+
+.chats{
+    margin-left: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: aliceblue;
+    color: black;
+}
+
+.chatBox{
+    position: relative;
+    width: 100%;
+}
+
+.sMessage{
+    /* background-color: antiquewhite; */
+    width: 100%;
+    display: flex;
+    justify-content: start;
+}
+
+.sender{
+    background: linear-gradient(190deg, rgb(102, 0, 255), rgb(0, 8, 255));
+    color: rgb(255, 255, 255);
+    /* width: auto; */
+    max-width: 70%;
+    position: relative;
+    display: flex;
+    margin: 10px 10px;
+    padding: 0px 15px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.rMessage{
+    /* background-color: antiquewhite; */
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+
+.reciever{
+    background: linear-gradient(20deg, rgb(255, 81, 0), rgb(255, 0, 0));
+    color: rgb(255, 255, 255);
+    /* width: auto; */
+    max-width: 70%;
+    position: relative;
+    display: flex;
+    margin: 10px 10px;
+    padding: 0 15px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+

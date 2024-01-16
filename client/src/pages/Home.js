@@ -6,6 +6,7 @@ import ProPage from './Profile/Propage'
 import {Routes, Route, Navigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Story from './story/Story'
+import Chatpage from './ChatPage/Chatpage.js'
 
 //1:08
 
@@ -27,6 +28,7 @@ const Home = () => {
         <Route path='/auth' element={user? <Navigate to ='../home'/> : <Auth/>} />
         <Route path='/profile/:id' element= {user ? <ProPage/> : <Navigate to= "../auth" />} />
         <Route path='/story/:id' element= {user ? <Story/> : <Navigate to="../auth" /> } />
+        <Route path='/chat' element={user ? <Chatpage/> : <Navigate to='../auth'/>} />
       </Routes>
        
 

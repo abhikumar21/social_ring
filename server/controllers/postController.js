@@ -34,7 +34,7 @@ export const getPost = async(req, res) => {
 
 //update a post
 export const updatePost = async(req, res) => {
-    const postid = req.params.id
+    const postId = req.params.id
     const {userId} = req.body
 
     try {
@@ -49,7 +49,6 @@ export const updatePost = async(req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-    
 }
 
 //delete post
