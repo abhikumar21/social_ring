@@ -24,6 +24,7 @@ const Posts = () => {
   const desc = useRef()
   const {user} = useSelector((state)=>state.authReducer.authData)
   const {posts} = useSelector((state)=> state.postReducer)
+  // console.log(posts)
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
   const [postusers, setPostusers] = useState([])
   //change to posts
@@ -100,6 +101,7 @@ const Posts = () => {
 
   useEffect (() => {
     dispatch(getTimelinePosts(user._id))
+    console.log(getTimelinePosts)
   }, [])
 
 
