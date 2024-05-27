@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import Bot from '../img_home/bot.jpg'
+import React, { useState } from 'react'
+// import Bot from '../img_home/bot.jpg'
 import Like from '../img_home/likeline.png'
 import Likedit from '../img_home/heartcolor.png'
 import Bookmark from '../img_home/bookmarkline.png'
 import Share from '../img_home/share.png'
 import { useSelector } from 'react-redux'
 import { likePost } from '../api/PostRequest'
-import { getAllUsers } from '../api/UserRequest'
+// import { getAllUsers } from '../api/UserRequest'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Menu } from '@headlessui/react'
 //add like in postcontroller
@@ -38,7 +38,7 @@ const Post = ({data, Userdata}) => {
         </div>
 
         <div>
-          <img className='rounded-lg' src={ data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" }></img>
+          <img className='rounded-lg' src={ data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" } alt="image"></img>
         </div>
 
         <div className=''>

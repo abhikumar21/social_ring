@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './Propage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { uploadImage } from '../../action/uploadAction';
-import {useParams} from 'react-router-dom'
+// import {useParams} from 'react-router-dom'
 import { updateUser } from '../../action/userAction';
 
 
@@ -24,7 +24,7 @@ const style = {
 
 const Modal_edit = ({profileUserId, data, show}) => {
     const dispatch = useDispatch();
-    const params = useParams();
+    // const params = useParams();
     const [open, setOpen] = useState(false);
     useEffect(()=>setOpen(show),[show])
     const handleOpen = () => setOpen(true);
@@ -58,7 +58,7 @@ const Modal_edit = ({profileUserId, data, show}) => {
             if(i>=l) {
                 break;
             }
-            if(imgName[i]=='.')  {
+            if(imgName[i]==='.')  {
                 var del_str = imgName.substring(i, l);
                 var newImg = imgName.replace(del_str, "");
                 break;
@@ -98,8 +98,8 @@ const Modal_edit = ({profileUserId, data, show}) => {
            <h1 className='flex justify-center text-2xl'>Update Your Details</h1> 
            {image? 
            <>
-             <img className="pr_dpro relaive h-32 w-32 mt-10 rounded-full" src={URL.createObjectURL(image)} />
-             <a className='text-blue-600 text-xl cursor-pointer' onClick={()=>imageRef.current.click()} >Change Profile Picture</a>
+             <img alt="image" className="pr_dpro relaive h-32 w-32 mt-10 rounded-full" src={URL.createObjectURL(image)} />
+             <a href="#" className='text-blue-600 text-xl cursor-pointer' onClick={()=>imageRef.current.click()} >Change Profile Picture</a>
              </>
              : 
              <a className='text-blue-600 text-xl cursor-pointer' onClick={()=>imageRef.current.click()} >Upload Profile Picture</a>

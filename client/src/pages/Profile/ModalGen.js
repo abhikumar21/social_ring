@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './Propage.css'
 
@@ -56,7 +56,7 @@ const ModalGen = () => {
 
   return (
       <>
-      <Button onClick={ !open ? handleOpen : handleClose } className='h-full'><a className='text-violet-900 bg-yellow-400 font-semibold rounded-lg px-5 h-full'>Generate Image</a></Button>
+      <Button onClick={ !open ? handleOpen : handleClose } className='h-full'><a href="#" className='text-violet-900 bg-yellow-400 font-semibold rounded-lg px-5 h-full'>Generate Image</a></Button>
      <Modal
         open={open}
         onClose={handleClose}

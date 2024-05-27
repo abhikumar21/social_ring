@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Bot from '../img_home/bot.jpg'
+// import Bot from '../img_home/bot.jpg'
 import './LeftUsers.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { followuser, unfollowuser } from '../action/userAction'
@@ -17,12 +17,12 @@ const [followed, setFollowed] = useState(user.following.includes(followUser._id)
 
  const handleFollow = () => {
   dispatch(followuser(followUser._id, user))
-  {followed ? setFollowed(false) : setFollowed(true)}
+  followed ? setFollowed(false) : setFollowed(true)
  }
 
  const handleUnfollow = () => {
   dispatch(unfollowuser(followUser._id, user))
-  {followed ? setFollowed(false) : setFollowed(true)}
+  followed ? setFollowed(false) : setFollowed(true)
  }
 
   return (

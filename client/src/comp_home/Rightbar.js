@@ -14,7 +14,7 @@ const Rightbar = () => {
         <button className='flex flex-col'><ExploreIcon/><h1>Explore</h1></button>
         <Link to={`/chat`} className='flex flex-col'><MessageIcon/><h1>Messsages</h1></Link>
         <button className='flex flex-col'><BookmarksIcon/><h1>Saved</h1></button>
-        <button className='flex flex-col'><MenuIcon/><h1></h1></button>
+        <button className='flex flex-col'><MenuIcon/></button>
  
       </div>
 
