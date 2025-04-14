@@ -1,0 +1,42 @@
+.upload{
+    height: 20vh;
+    background-color: rgb(107, 107, 107);
+}
+
+/* .upload img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+} */
+
+.post_upload_btn{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.post_upload_btn .btn{
+   background-color: rgb(139, 211, 255);
+   color: black;
+   padding: 2px 12px;
+   border-radius: 20px;
+
+}
+
+.post_upload_btn .postbtn{
+   background-color: rgb(239, 0, 0) !important;
+   color: aliceblue !important;
+   padding: 4px 12px !important;
+}
+
+.previewimage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.caption{
+    color: black;
+}

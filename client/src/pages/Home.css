@@ -1,0 +1,38 @@
+
+.home{
+    background: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(31, 31, 37);
+    overflow: auto;
+}
+
+
+.yellow{
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    background: yellow;
+    position: fixed;
+    height: 80px;
+    width: 120px;
+    filter: blur(80px); 
+}
+
+.orange{
+    position: absolute;
+    left: 70%;
+    top: 70%;
+    background-color: orangered;
+    position: fixed;
+    height: 200px;
+    width: 200px;
+    filter: blur(110px);
+}
+
+/* .sections{
+    display: grid;
+    grid-template-columns: 80% 20%;
+} */

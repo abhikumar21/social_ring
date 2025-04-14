@@ -1,0 +1,17 @@
+
+.followers{
+    /* background: linear-gradient(230deg, rgb(255, 255, 255), rgb(187, 240, 255)); */
+    background: rgb(71, 71, 71);
+    color: white;
+ }
+ 
+ 
+ .someuser{
+     display: grid;
+     grid-template-columns: 1fr 4fr 2fr;
+     
+ }
+
+ /* .someuser button{
+    color: rgb(94, 225, 255);
+ } */

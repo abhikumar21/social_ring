@@ -1,0 +1,76 @@
+
+.profile_page{
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.profile_page::-webkit-scrollbar{
+    width: 0;
+}
+
+.profile_info{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+
+.flexed{
+    display: flex;
+    height: 30px;
+    gap: 50px;
+}
+
+.pr_info2{
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+.pr_posts{
+
+    /* gap: 20px;
+    columns: 4; */
+}
+
+.pr_post1{
+    width: 330px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.modal_box{
+    height: 80vh;
+    width: 80vw;
+}
+
+.edit_profile{
+    line-height: 4em;
+}
+
+.edit_input{
+    border: 2px solid rgb(118, 117, 117);
+    height: 40px;
+    padding: 0 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+.bio_input{
+    resize: vertical;
+    overflow: auto;
+}
+
+.pr_logout{
+    display: flex;
+    position: relative;
+    margin-left: 280px;
+}
+
+
+.modal_box .img_gen{
+    border: 2px solid black !important;
+    border-radius: 15px;
+    padding: 5px 20px;
+}

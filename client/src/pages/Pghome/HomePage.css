@@ -1,0 +1,9 @@
+
+.my{
+    width: 100%;
+ }
+ 
+ .home_page1{
+    display: grid;
+    grid-template-columns: 80% 20%;
+ }
