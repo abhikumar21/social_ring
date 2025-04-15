@@ -49,7 +49,7 @@ git clone https://github.com/abhikumar21/social_ring.git
 cd social_ring
 ```
 
-###Setup Backend 
+### Setup Backend 
 ```bash
 cd server
 npm install
@@ -57,7 +57,7 @@ npm install
 touch .env
 ```
 
-###.env Format
+### .env Format
 ```bash
 PORT = 5000
 CONN_STRING = mondodb_connection_string
@@ -75,7 +75,7 @@ cd ../client
 npm install
 ```
 
-###.env Format
+### .env Format
 ```bash
 REACT_APP_PUBLIC_FOLDER = http://localhost:5000/image/
 BASE_URL = http://localhost:5000
