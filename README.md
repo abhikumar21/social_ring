@@ -2,6 +2,9 @@
 
 A full-stack social media platform built with the **MERN Stack** (MongoDB, Express.js, React.js, Node.js), featuring user authentication, real-time interactions, media sharing, OpenAI-powered content generation, and a modern UI.
 
+![image alt](https://github.com/abhikumar21/social_ring/blob/main/client/public/social_media_application.png?raw=true)
+
+
 ---
 
 ## 🚀 Features
@@ -44,6 +47,7 @@ A full-stack social media platform built with the **MERN Stack** (MongoDB, Expre
 ```bash
 git clone https://github.com/abhikumar21/social_ring.git
 cd social_ring
+```
 
 ###Setup Backend 
 ```bash
@@ -51,6 +55,7 @@ cd server
 npm install
 # Create .env file
 touch .env
+```
 
 ###.env Format
 ```bash
@@ -58,21 +63,25 @@ PORT = 5000
 CONN_STRING = mondodb_connection_string
 JWT_KEY = your_jwt_key
 OPENAI_API_KEY=your_openai_api_key
+```
 
 ```bash
 nodemon index.js
+```
 
 ### 3. Setup Frontend
 ```bash
 cd ../client
 npm install
-
+```
 
 ###.env Format
 ```bash
 REACT_APP_PUBLIC_FOLDER = http://localhost:5000/image/
 BASE_URL = http://localhost:5000
+```
 
 ```bash
 npm start
+```
 
