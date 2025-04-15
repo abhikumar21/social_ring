@@ -49,7 +49,7 @@ git clone https://github.com/abhikumar21/social_ring.git
 cd social_ring
 ```
 
-### Setup Backend 
+### 2. Setup Backend 
 ```bash
 cd server
 npm install
