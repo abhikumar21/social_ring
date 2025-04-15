@@ -53,7 +53,9 @@ cd social_ring
 ```bash
 cd server
 npm install
+```
 # Create .env file
+```bash
 touch .env
 ```
 
